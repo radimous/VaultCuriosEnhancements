@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.radimous.vaultcuriosenhancements.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "vault_curios_enhancements.refmap.json",
+  "mixins": [
+    "CuriosContainerMixin",
+    "PlayerEventsMixin",
+    "StatisticsTabContainerMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -15,8 +15,6 @@ public class VaultCuriosEnhancements {
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
-            () -> new SlotTypeMessage.Builder("junk_identifier").priority(1000).build());
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
             () -> new SlotTypeMessage.Builder("vault_compass").priority(800).build());
     }
 }

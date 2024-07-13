@@ -2,8 +2,6 @@ package com.radimous.vaultcuriosenhancements.mixin;
 
 import iskallia.vault.container.inventory.ShardPouchContainer;
 import iskallia.vault.init.ModItems;
-import iskallia.vault.world.data.InventorySnapshotData;
-import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -16,16 +14,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import top.theillusivec4.curios.api.CuriosApi;
 
-import java.util.List;
 
-@Mixin(value = {Inventory.class}, priority = 9999)
-public abstract class MixinPlayerInventory implements InventorySnapshotData.InventoryAccessor {
+@Mixin(value = {Inventory.class}, priority = 900)
+public abstract class MixinPlayerInventory {
     @Shadow
     @Final
     public Player player;
-    @Shadow
-    @Final
-    private List<NonNullList<ItemStack>> compartments;
 
     public MixinPlayerInventory() {
     }
@@ -55,10 +49,6 @@ public abstract class MixinPlayerInventory implements InventorySnapshotData.Inve
                 }
             }
         }
-    }
-
-    public int getSize() {
-        return this.compartments.stream().mapToInt(NonNullList::size).sum();
     }
 }
 

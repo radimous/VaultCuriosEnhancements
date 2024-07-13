@@ -6,6 +6,7 @@
   "refmap": "vault_curios_enhancements.refmap.json",
   "mixins": [
     "CuriosContainerMixin",
+    "MixinPlayerInventory",
     "PlayerEventsMixin",
     "StatisticsTabContainerMixin"
   ],

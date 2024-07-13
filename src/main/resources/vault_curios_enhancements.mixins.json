@@ -6,11 +6,13 @@
   "refmap": "vault_curios_enhancements.refmap.json",
   "mixins": [
     "CuriosContainerMixin",
+    "ItemShardPouchMixin",
     "MixinPlayerInventory",
     "PlayerEventsMixin",
     "StatisticsTabContainerMixin"
   ],
   "client": [
+    "ShardTradeScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

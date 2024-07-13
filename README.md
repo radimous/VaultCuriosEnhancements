@@ -1,7 +1,7 @@
 # VaultCuriosEnhancements
-Makes vault curios shift-clickable and adds vault compass curio and makes the junk identifier usable in any curio <br>
+Makes vault curios shift-clickable, adds vault compass and shard pouch curio and makes the junk identifier usable in any curio <br>
 Mostly server-side mod<br>
-It will work if it's installed just on the server, but clients won't see proper curio slot names and shift-clicking curio when curio slot is full might show ghost item in your inventory<br>
+Clients without the mod won't see proper curio slot names and they won't be able to buy items from black market when they have shard pouch in curio slot<br>
 
 
 

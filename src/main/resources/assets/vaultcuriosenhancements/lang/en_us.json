@@ -1,4 +1,6 @@
 {
   "curios.identifier.vault_compass": "Vault Compass",
-  "curios.identifier.shard_pouch": "Shard Pouch"
+  "curios.identifier.shard_pouch": "Shard Pouch",
+  "vault_curios_enhancements.rebindcompass": "Rebind Compass",
+  "key.categories.vault_curios_enhancements": "Vault Curios Enhancements"
 }

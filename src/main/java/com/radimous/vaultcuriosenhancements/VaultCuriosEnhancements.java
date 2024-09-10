@@ -10,8 +10,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 
-@Mod("vault_curios_enhancements")
+@Mod(VaultCuriosEnhancements.MODID)
 public class VaultCuriosEnhancements {
+    public static final String MODID = "vault_curios_enhancements";
 
     public VaultCuriosEnhancements() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);

@@ -5,7 +5,6 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "vault_curios_enhancements.refmap.json",
   "mixins": [
-    "CompassItemAccessor",
     "CuriosContainerMixin",
     "ItemAccessor",
     "ItemShardPouchMixin",

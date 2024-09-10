@@ -3,8 +3,6 @@ package com.radimous.vaultcuriosenhancements;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.radimous.vaultcuriosenhancements.network.C2SSetCompassTargetPacket;
 import com.radimous.vaultcuriosenhancements.network.PacketHandler;
-import iskallia.vault.init.ModItems;
-import iskallia.vault.item.CompassItem;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
@@ -12,7 +10,6 @@ import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import top.theillusivec4.curios.api.CuriosApi;
 
 @Mod.EventBusSubscriber(modid = VaultCuriosEnhancements.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class Keybind {
@@ -23,11 +20,7 @@ public final class Keybind {
             return;
         }
         if (REBIND_COMPASS.consumeClick()) {
-            CuriosApi.getCuriosHelper().findFirstCurio(mc.player, ModItems.VAULT_COMPASS).ifPresent((handler) -> {
-                if (handler.stack().getItem() instanceof CompassItem){
-                    PacketHandler.sendToServer(new C2SSetCompassTargetPacket());
-                }
-            });
+            PacketHandler.sendToServer(new C2SSetCompassTargetPacket());
         }
     }
 

@@ -3,6 +3,7 @@ package com.radimous.vaultcuriosenhancements.mixin;
 
 import com.radimous.vaultcuriosenhancements.Config;
 import com.radimous.vaultcuriosenhancements.ShardLabel;
+import com.radimous.vaultcuriosenhancements.VaultCuriosEnhancements;
 import iskallia.vault.client.gui.framework.render.spi.IElementRenderer;
 import iskallia.vault.client.gui.framework.render.spi.ITooltipRendererFactory;
 import iskallia.vault.client.gui.framework.screen.AbstractElementContainerScreen;
@@ -18,6 +19,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.function.Supplier;
 
 @Mixin(value = ShardTradeScreen.class, remap = false)
 public class ShardTradeScreenMixin extends AbstractElementContainerScreen<ShardTradeContainer> {
@@ -35,8 +38,14 @@ public class ShardTradeScreenMixin extends AbstractElementContainerScreen<ShardT
         }
         var player = Minecraft.getInstance().player;
         if (player == null) return;
+        Supplier<String> shardCountFn;
+        if (Config.blackMarketShortFmt.get()){
+            shardCountFn = () -> VaultCuriosEnhancements.fmtNum(ItemShardPouch.getShardCount(player));
+        } else {
+            shardCountFn = () -> String.valueOf(ItemShardPouch.getShardCount(player));
+        }
         this.addElement(
-            new ShardLabel(Spatials.positionXYZ(37, 20, 200), () -> ItemShardPouch.getShardCount(player), LabelTextStyle.border8().center())
+            new ShardLabel(Spatials.positionXYZ(37, 20, 200), shardCountFn, LabelTextStyle.border8().center())
                 .layout((screen, gui, parent, world) -> world.translateXYZ(gui))
         );
     }

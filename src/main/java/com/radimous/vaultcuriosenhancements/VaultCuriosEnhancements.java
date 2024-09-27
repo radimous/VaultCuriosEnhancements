@@ -24,4 +24,22 @@ public class VaultCuriosEnhancements {
             () -> new SlotTypeMessage.Builder("vault_compass").priority(800).build());
         InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("shard_pouch").icon(new ResourceLocation(CuriosApi.MODID + ":slot/shard_pouch")).priority(800).size(1).build());
     }
+
+    public static String fmtNum(int num) {
+        if (num >= 1_000_000_000) {      // 1.0B
+            return String.format("%.1fB", num / 1_000_000_000.0);
+        } else if (num >= 100_000_000) { // 100M
+            return String.format("%.0fM", num / 1_000_000.0);
+        } else if (num >= 1_000_000) {   // 1.0M 10.0M
+            return String.format("%.1fM", num / 1_000_000.0);
+        } else if (num >= 100_000) {     // 100K
+            return String.format("%.0fK", num / 1_000.0);
+        } else if (num >= 10_000) {      // 10.0K
+            return String.format("%.1fK", num / 1_000.0);
+        } else if (num >= 1_000) {       // 1.00K
+            return String.format("%.2fK", num / 1_000.0);
+        } else {
+            return String.valueOf(num);
+        }
+    }
 }

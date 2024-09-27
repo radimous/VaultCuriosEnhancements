@@ -7,13 +7,13 @@ import net.minecraft.network.chat.TextComponent;
 
 import java.util.function.Supplier;
 
-public class ShardLabel extends DynamicLabelElement<Integer, ShardLabel> {
+public class ShardLabel extends DynamicLabelElement<String, ShardLabel> {
 
-    public ShardLabel(IPosition position, Supplier<Integer> valueSupplier, LabelTextStyle.Builder labelTextStyle) {
+    public ShardLabel(IPosition position, Supplier<String> valueSupplier, LabelTextStyle.Builder labelTextStyle) {
         super(position, valueSupplier, labelTextStyle);
     }
 
-    @Override protected void onValueChanged(Integer shardCount) {
-        this.set(new TextComponent(String.valueOf(shardCount)));
+    @Override protected void onValueChanged(String shardCount) {
+        this.set(new TextComponent(shardCount));
     }
 }

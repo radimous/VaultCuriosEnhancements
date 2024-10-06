@@ -8,9 +8,7 @@
   "mixins": [],
   "client": [
     "ArmorRendererMixin",
-    "BlockArmorRendererMixin",
-    "CuriosRendererMixin",
-    "EachArmorRendererMixin"
+    "ArmorStatusMixin"
   ],
   "injectors": {
     "defaultRequire": 1

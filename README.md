@@ -1,16 +1,31 @@
-# VaultCuriosEnhancements
-Makes vault curios shift-clickable, adds vault compass and shard pouch curio and makes the junk identifier usable in any curio slot.  
-Both server and client should have this mod installed, but it is optional on both sides, so you can connect to servers without the mod and vice versa.  
-This mod can also display number of available shards in black market (must be enabled in config).
+# VaultCuriosEnhancements  
+Both server and client should have this mod installed for the best experience, but it is optional on both sides, so you can connect to servers without the mod and vice versa.  
+More details in each section.  
+### New curios:
+- Vault Compass
+- Shard pouch (works with black market)
+- Junk identifier  
+<sub>Mostly server side</sub>  
+<sub>clients without this mod can still use new curios, but they won't see proper textures and names</sub>  
+<sub>and they won't be able to buy things in black market if they have shard pouch in curio slot</sub>
 
-If it's only on the server:  
-- Clients without the mod won't see proper curio slot names (but they can still use the curios)  
-- Clients without the mod won't be able to buy items from black market when they have shard pouch in curio slot
-- Can't rebind the compass with keybind
-- Can't enable black market shard count display  
 
-If it's only on the client:
-- Can only enable black market shard count display, everything else is server-side
+### Improvements to existing curios
+- Makes all curios shift-clickable
+- Adds tooltip to card deck  
+<sub>Only required on the server</sub>
+
+### Compass keybind
+- Adds keybind to rebind the vault compass  
+<sub>Required on both, client and server</sub>
+
+### Added information
+- Adds number of soul shards in a shoul pouch to inventory hud
+- Adds uses left on trinkets to inventory hud
+- Adds uses left on charms to inventory hud
+- Adds number of available soul shards to the black market (off by default)  
+<sub>Client side only</sub>
+
 
 To enable the compass curio you must open invhud settings with keybind (O by default, [opening it from config menu won't work](https://legacy.curseforge.com/minecraft/mc-mods/inventory-hud-forge/issues/99)), and enable it in the curio tab.
 

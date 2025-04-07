@@ -1,6 +1,7 @@
 package com.radimous.vaultcuriosenhancements;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import com.radimous.vaultcuriosenhancements.network.C2SOpenCurioShardPouchMessage;
 import com.radimous.vaultcuriosenhancements.network.C2SSetCompassTargetPacket;
 import com.radimous.vaultcuriosenhancements.network.PacketHandler;
 import net.minecraft.client.KeyMapping;
@@ -22,11 +23,17 @@ public final class Keybind {
         if (REBIND_COMPASS.consumeClick()) {
             PacketHandler.sendToServer(new C2SSetCompassTargetPacket());
         }
+        if (OPEN_POUCH.consumeClick()) {
+            PacketHandler.sendToServer(new C2SOpenCurioShardPouchMessage());
+        }
     }
 
 
     public static final String VAULT_CURIOS_ENHANCEMENTS_CAT = "key.categories.vault_curios_enhancements";
     public static final KeyMapping
         REBIND_COMPASS = new KeyMapping("vault_curios_enhancements.rebindcompass", KeyConflictContext.IN_GAME, InputConstants.UNKNOWN,
+        VAULT_CURIOS_ENHANCEMENTS_CAT);
+    public static final KeyMapping
+        OPEN_POUCH = new KeyMapping("vault_curios_enhancements.openpouch", KeyConflictContext.IN_GAME, InputConstants.UNKNOWN,
         VAULT_CURIOS_ENHANCEMENTS_CAT);
 }

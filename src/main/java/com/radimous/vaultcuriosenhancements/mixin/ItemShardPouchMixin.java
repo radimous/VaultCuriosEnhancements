@@ -20,11 +20,7 @@ import static iskallia.vault.item.ItemShardPouch.setContainedStack;
 public class ItemShardPouchMixin {
     @ModifyVariable(method = "getShardCount(Lnet/minecraft/world/entity/player/Inventory;)I", at = @At(value = "STORE", ordinal = 0), ordinal = 0)
     private static int getShardCount(int original, Inventory inventory){
-        ItemStack stack = ItemStack.EMPTY;
-        Optional<SlotResult> slot = CuriosApi.getCuriosHelper().findFirstCurio(inventory.player, ModItems.SHARD_POUCH);
-        if(slot.isPresent()) {
-            stack = slot.get().stack();
-        }
+        ItemStack stack = CuriosApi.getCuriosHelper().findFirstCurio(inventory.player, ModItems.SHARD_POUCH).map(SlotResult::stack).orElse(ItemStack.EMPTY);
         if (stack.isEmpty()) {
             return original;
         }
@@ -33,11 +29,7 @@ public class ItemShardPouchMixin {
     }
     @ModifyVariable(method = "reduceShardAmount", at = @At(value = "HEAD"), argsOnly = true, ordinal = 0)
     private static int reduceShardAmount(int value, Inventory inventory, int count, boolean simulate){
-        ItemStack stack = ItemStack.EMPTY;
-        Optional<SlotResult> slot = CuriosApi.getCuriosHelper().findFirstCurio(inventory.player, ModItems.SHARD_POUCH);
-        if(slot.isPresent()) {
-            stack = slot.get().stack();
-        }
+        ItemStack stack = CuriosApi.getCuriosHelper().findFirstCurio(inventory.player, ModItems.SHARD_POUCH).map(SlotResult::stack).orElse(ItemStack.EMPTY);
         if (stack.isEmpty()) {
             return count;
         }

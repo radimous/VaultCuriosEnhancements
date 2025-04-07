@@ -1,5 +1,6 @@
 package com.radimous.vaultcuriosenhancements;
 
+import com.radimous.vaultcuriosenhancements.events.CommonEvent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.InterModComms;

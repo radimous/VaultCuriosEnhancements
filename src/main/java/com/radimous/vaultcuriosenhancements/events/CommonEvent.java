@@ -1,4 +1,4 @@
-package com.radimous.vaultcuriosenhancements;
+package com.radimous.vaultcuriosenhancements.events;
 
 import iskallia.vault.container.inventory.ShardPouchContainer;
 import iskallia.vault.init.ModItems;
@@ -8,6 +8,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.items.CapabilityItemHandler;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotResult;
 
 public class CommonEvent {
 
@@ -22,13 +23,10 @@ public class CommonEvent {
         }
         if (stack.getItem() == ModItems.SOUL_SHARD) {
             if (!(player.containerMenu instanceof ShardPouchContainer)) {
-                ItemStack pouchStack = ItemStack.EMPTY;
-                if(CuriosApi.getCuriosHelper().findFirstCurio(player, ModItems.SHARD_POUCH).isPresent()) {
-                    pouchStack = CuriosApi.getCuriosHelper().findFirstCurio(player, ModItems.SHARD_POUCH).get().stack();
-                }
+                ItemStack pouchStack = CuriosApi.getCuriosHelper().findFirstCurio(player, ModItems.SHARD_POUCH).map(SlotResult::stack).orElse(ItemStack.EMPTY);
 
                 if (!pouchStack.isEmpty()) {
-                    pouchStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent((handler) -> {
+                    pouchStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
                         ItemStack remainder = handler.insertItem(0, stack, false);
                         stack.setCount(remainder.getCount());
                         if (stack.isEmpty()) {

@@ -20,6 +20,13 @@ public class PacketHandler {
             .decoder(C2SSetCompassTargetPacket::decode)
             .consumer(C2SSetCompassTargetPacket::handle)
             .add();
+        INSTANCE.messageBuilder(C2SOpenCurioShardPouchMessage.class, 1, NetworkDirection.PLAY_TO_SERVER)
+            .encoder(C2SOpenCurioShardPouchMessage::encode)
+            .decoder(C2SOpenCurioShardPouchMessage::decode)
+            .consumer(C2SOpenCurioShardPouchMessage::handle)
+            .add();
+
+
     }
 
     public static void sendToServer(Object msg) {

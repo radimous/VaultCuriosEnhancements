@@ -1,6 +1,7 @@
 package com.radimous.vaultcuriosenhancements;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -16,6 +17,7 @@ public class VaultCuriosEnhancements {
 
     public VaultCuriosEnhancements() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
+        MinecraftForge.EVENT_BUS.register(new CommonEvent());
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_SPEC);
     }
 

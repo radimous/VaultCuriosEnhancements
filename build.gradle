@@ -178,7 +178,7 @@ dependencies {
 //    }
 
     implementation fg.deobf("curse.maven:create-328085:4550986")
-    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:6367278")
+    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:6470304")
     implementation fg.deobf("curse.maven:quark-243121:3840125")
 
     implementation fg.deobf("curse.maven:inventory-hud-forge-357540:4639686")

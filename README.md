@@ -1,14 +1,13 @@
 # VaultCuriosEnhancements  
 Both server and client should have this mod installed for the best experience, but it is optional on both sides, so you can connect to servers without the mod and vice versa.  
 More details in each section.  
+
 ### New curios:
 - Vault Compass
-- Shard pouch (works with black market)
-- Junk identifier  
-<sub>Mostly server side</sub>  
-<sub>clients without this mod can still use new curios, but they won't see proper textures and names</sub>  
-<sub>and they won't be able to buy things in black market if they have shard pouch in curio slot</sub>
-
+- Shard Pouch (works with black market)
+- Void Stone
+- Coin Pouch
+- Antique Book
 
 ### Improvements to existing curios
 - Makes all curios shift-clickable
@@ -20,10 +19,12 @@ More details in each section.
 <sub>Required on both, client and server</sub>
 
 ### Added information
-- Adds number of soul shards in a shoul pouch to inventory hud
+- Adds number of soul shards in a shard pouch to inventory hud
+- Adds number of coins in a coin pouch to inventory hud
+  - Configurable currency (Bronze, Silver, Gold, Platinum) and you can optionally add currency suffix (B, S, G, P)
 - Adds uses left on trinkets to inventory hud
 - Adds uses left on charms to inventory hud
-- Adds number of available soul shards to the black market (off by default)  
+- Adds uses left on void stone to inventory hud
 <sub>Client side only</sub>
 
 

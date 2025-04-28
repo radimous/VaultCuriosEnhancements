@@ -2,9 +2,11 @@ package com.radimous.vaultcuriosenhancements.mixin.invhud;
 
 import com.radimous.vaultcuriosenhancements.Config;
 import dlovin.inventoryhud.armorstatus.ArmorStatus;
+import iskallia.vault.item.CoinPouchItem;
 import iskallia.vault.item.ItemShardPouch;
 import iskallia.vault.item.gear.CharmItem;
 import iskallia.vault.item.gear.TrinketItem;
+import iskallia.vault.item.gear.VoidStoneItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,10 +26,16 @@ public class ArmorStatusMixin {
         if (Config.showShardCountInInvhud.get() && item instanceof ItemShardPouch) {
             cir.setReturnValue(1);
         }
+        if (Config.showCoinsInInvhud.get() && item instanceof CoinPouchItem) {
+            cir.setReturnValue(1);
+        }
         if (Config.invhudTrinketUses.get() && item instanceof TrinketItem) {
             cir.setReturnValue(1);
         }
         if (Config.invhudCharmUses.get() && item instanceof CharmItem) {
+            cir.setReturnValue(1);
+        }
+        if (Config.invhudVoidStoneUses.get() && item instanceof VoidStoneItem) {
             cir.setReturnValue(1);
         }
     }

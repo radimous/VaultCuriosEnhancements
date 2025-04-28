@@ -22,9 +22,22 @@ public class VaultCuriosEnhancements {
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
-            () -> new SlotTypeMessage.Builder("vault_compass").priority(800).build());
-        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("shard_pouch").icon(new ResourceLocation(CuriosApi.MODID + ":slot/shard_pouch")).priority(800).size(1).build());
+        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
+            () -> new SlotTypeMessage.Builder("vault_compass")
+                .icon(new ResourceLocation(CuriosApi.MODID + ":slot/vault_compass"))
+                .priority(800).build());
+        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
+            () -> new SlotTypeMessage.Builder("shard_pouch")
+                .icon(new ResourceLocation(CuriosApi.MODID + ":slot/shard_pouch"))
+                .priority(800).build());
+        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
+            () -> new SlotTypeMessage.Builder("coin_pouch")
+                .icon(new ResourceLocation(CuriosApi.MODID + ":slot/coin_pouch"))
+                .priority(800).build());
+        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
+            () -> new SlotTypeMessage.Builder("antique_collector_book")
+                .icon(new ResourceLocation(CuriosApi.MODID + ":slot/antique_collector_book"))
+                .priority(800).build());
     }
 
     public static String fmtNum(int num) {

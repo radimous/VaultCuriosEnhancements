@@ -8,9 +8,6 @@
     "ItemAccessor",
     "ItemShardPouchMixin"
   ],
-  "client": [
-    "ShardTradeScreenMixin"
-  ],
   "injectors": {
     "defaultRequire": 1
   }

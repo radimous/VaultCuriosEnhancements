@@ -82,19 +82,4 @@ public class VaultCuriosEnhancements {
         }
         return -2;
     }
-
-    public static ItemStack getStack(ServerPlayer player, Item item) {
-        SlotResult shardPouchSlot = CuriosApi.getCuriosHelper().findFirstCurio(player,item).orElse(null);
-        if (shardPouchSlot != null) {
-            return shardPouchSlot.stack();
-        }
-
-        for (int i = 0; i < player.getInventory().items.size(); ++i) {
-            ItemStack stack = player.getInventory().items.get(i);
-            if (!stack.isEmpty() && stack.is(item)) {
-                return stack;
-            }
-        }
-        return ItemStack.EMPTY;
-    }
 }

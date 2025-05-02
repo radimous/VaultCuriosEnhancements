@@ -11,5 +11,6 @@ public class ClientModEvent {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         ClientRegistry.registerKeyBinding(Keybind.REBIND_COMPASS);
+        ClientRegistry.registerKeyBinding(Keybind.OPEN_ANTIQUE_BOOK);
     }
 }

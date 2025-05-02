@@ -5,7 +5,7 @@ import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
-@Mixin(CoinPouchItem.class)
+@Mixin(value = CoinPouchItem.class, remap = false)
 public interface CoinPouchItemAccessor {
     @Invoker
     static boolean invokeIsCoinItem(Item item) {return false;}

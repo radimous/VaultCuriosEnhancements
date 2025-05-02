@@ -25,6 +25,11 @@ public class PacketHandler {
             .decoder(C2SOpenAntiqueBookPacket::decode)
             .consumer(C2SOpenAntiqueBookPacket::handle)
             .add();
+        INSTANCE.messageBuilder(C2SOpenShardPouchPacket.class, 2, NetworkDirection.PLAY_TO_SERVER)
+            .encoder(C2SOpenShardPouchPacket::encode)
+            .decoder(C2SOpenShardPouchPacket::decode)
+            .consumer(C2SOpenShardPouchPacket::handle)
+            .add();
     }
 
     public static void sendToServer(Object msg) {

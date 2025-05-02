@@ -1,7 +1,6 @@
 package com.radimous.vaultcuriosenhancements;
 
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -10,7 +9,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class ClientModEvent {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        ClientRegistry.registerKeyBinding(Keybind.REBIND_COMPASS);
-        ClientRegistry.registerKeyBinding(Keybind.OPEN_ANTIQUE_BOOK);
+        Keybind.register();
     }
 }

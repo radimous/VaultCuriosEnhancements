@@ -44,12 +44,11 @@ public class C2SSetCompassTargetPacket {
     }
 
     private static void setTarget(Player player, Level level, BlockPos pos) {
-        ServerVaults.get(level).ifPresent((vault) -> {
+        ServerVaults.get(level).ifPresent(vault -> {
             Listeners listeners = vault.get(Vault.LISTENERS);
             if (listeners.contains(player.getUUID())) {
                 listeners.get(player.getUUID()).set(Listener.COMPASS_TARGET, pos);
             }
-
         });
     }
 

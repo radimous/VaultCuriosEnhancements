@@ -1,6 +1,9 @@
 package com.radimous.vaultcuriosenhancements;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -9,6 +12,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 
 @Mod(VaultCuriosEnhancements.MODID)
@@ -56,5 +60,41 @@ public class VaultCuriosEnhancements {
         } else {
             return String.valueOf(num);
         }
+    }
+
+    /**
+     * Get the first index of the item in the player's inventory. -1 if in curio, -2 if not found
+     * @param player player
+     * @param item item to find
+     * @return index of the item in the player's inventory, -1 if in curio, -2 if not found
+     */
+    public static int getFirstItemIndex(ServerPlayer player, Item item) {
+        SlotResult shardPouchSlot = CuriosApi.getCuriosHelper().findFirstCurio(player,item).orElse(null);
+        if (shardPouchSlot != null) {
+            return -1;
+        }
+
+        for (int i = 0; i < player.getInventory().items.size(); ++i) {
+            ItemStack stack = player.getInventory().items.get(i);
+            if (!stack.isEmpty() && stack.is(item)) {
+                return i;
+            }
+        }
+        return -2;
+    }
+
+    public static ItemStack getStack(ServerPlayer player, Item item) {
+        SlotResult shardPouchSlot = CuriosApi.getCuriosHelper().findFirstCurio(player,item).orElse(null);
+        if (shardPouchSlot != null) {
+            return shardPouchSlot.stack();
+        }
+
+        for (int i = 0; i < player.getInventory().items.size(); ++i) {
+            ItemStack stack = player.getInventory().items.get(i);
+            if (!stack.isEmpty() && stack.is(item)) {
+                return stack;
+            }
+        }
+        return ItemStack.EMPTY;
     }
 }

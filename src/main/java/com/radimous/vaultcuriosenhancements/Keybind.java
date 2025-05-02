@@ -1,6 +1,7 @@
 package com.radimous.vaultcuriosenhancements;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import com.radimous.vaultcuriosenhancements.network.C2SOpenAntiqueBookPacket;
 import com.radimous.vaultcuriosenhancements.network.C2SSetCompassTargetPacket;
 import com.radimous.vaultcuriosenhancements.network.PacketHandler;
 import net.minecraft.client.KeyMapping;
@@ -22,11 +23,26 @@ public final class Keybind {
         if (REBIND_COMPASS.consumeClick()) {
             PacketHandler.sendToServer(new C2SSetCompassTargetPacket());
         }
+        if (OPEN_ANTIQUE_BOOK.consumeClick()) {
+            PacketHandler.sendToServer(new C2SOpenAntiqueBookPacket());
+        }
     }
 
 
     public static final String VAULT_CURIOS_ENHANCEMENTS_CAT = "key.categories.vault_curios_enhancements";
-    public static final KeyMapping
-        REBIND_COMPASS = new KeyMapping("vault_curios_enhancements.rebindcompass", KeyConflictContext.IN_GAME, InputConstants.UNKNOWN,
-        VAULT_CURIOS_ENHANCEMENTS_CAT);
+    public static final KeyMapping REBIND_COMPASS =
+        new KeyMapping(
+            "vault_curios_enhancements.rebindcompass",
+            KeyConflictContext.IN_GAME,
+            InputConstants.UNKNOWN,
+            VAULT_CURIOS_ENHANCEMENTS_CAT
+        );
+
+    public static final KeyMapping OPEN_ANTIQUE_BOOK =
+        new KeyMapping(
+            "vault_curios_enhancements.openantiquebook",
+            KeyConflictContext.IN_GAME,
+            InputConstants.UNKNOWN,
+            VAULT_CURIOS_ENHANCEMENTS_CAT
+        );
 }

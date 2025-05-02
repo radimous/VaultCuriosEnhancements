@@ -20,6 +20,11 @@ public class PacketHandler {
             .decoder(C2SSetCompassTargetPacket::decode)
             .consumer(C2SSetCompassTargetPacket::handle)
             .add();
+        INSTANCE.messageBuilder(C2SOpenAntiqueBookPacket.class, 1, NetworkDirection.PLAY_TO_SERVER)
+            .encoder(C2SOpenAntiqueBookPacket::encode)
+            .decoder(C2SOpenAntiqueBookPacket::decode)
+            .consumer(C2SOpenAntiqueBookPacket::handle)
+            .add();
     }
 
     public static void sendToServer(Object msg) {

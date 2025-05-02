@@ -18,7 +18,7 @@ public class MixinCoinPouchContainer {
 
     @Shadow @Final private Inventory inventory;
 
-    @WrapOperation(method = {"hasPouch", "lambda$new$1"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Inventory;getItem(I)Lnet/minecraft/world/item/ItemStack;"))
+    @WrapOperation(method = {"hasPouch", "lambda$new$1"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Inventory;getItem(I)Lnet/minecraft/world/item/ItemStack;", remap = true))
     private ItemStack getItem(Inventory instance, int i, Operation<ItemStack> original) {
         if (i == -1) {
             ItemStack stack = CuriosApi.getCuriosHelper().findFirstCurio(this.inventory.player, ModItems.COIN_POUCH).map(SlotResult::stack).orElse(null);

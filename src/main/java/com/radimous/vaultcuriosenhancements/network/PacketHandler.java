@@ -30,6 +30,11 @@ public class PacketHandler {
             .decoder(C2SOpenShardPouchPacket::decode)
             .consumer(C2SOpenShardPouchPacket::handle)
             .add();
+        INSTANCE.messageBuilder(C2SOpenCoinPouchPacket.class, 3, NetworkDirection.PLAY_TO_SERVER)
+            .encoder(C2SOpenCoinPouchPacket::encode)
+            .decoder(C2SOpenCoinPouchPacket::decode)
+            .consumer(C2SOpenCoinPouchPacket::handle)
+            .add();
     }
 
     public static void sendToServer(Object msg) {

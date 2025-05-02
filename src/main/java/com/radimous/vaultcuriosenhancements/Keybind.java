@@ -2,6 +2,7 @@ package com.radimous.vaultcuriosenhancements;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import com.radimous.vaultcuriosenhancements.network.C2SOpenAntiqueBookPacket;
+import com.radimous.vaultcuriosenhancements.network.C2SOpenCoinPouchPacket;
 import com.radimous.vaultcuriosenhancements.network.C2SOpenShardPouchPacket;
 import com.radimous.vaultcuriosenhancements.network.C2SSetCompassTargetPacket;
 import com.radimous.vaultcuriosenhancements.network.PacketHandler;
@@ -31,6 +32,9 @@ public final class Keybind {
         if (OPEN_SHARD_POUCH.consumeClick()) {
             PacketHandler.sendToServer(new C2SOpenShardPouchPacket());
         }
+        if (OPEN_COIN_POUCH.consumeClick()) {
+            PacketHandler.sendToServer(new C2SOpenCoinPouchPacket());
+        }
     }
 
 
@@ -59,9 +63,18 @@ public final class Keybind {
             VAULT_CURIOS_ENHANCEMENTS_CAT
         );
 
+    public static final KeyMapping OPEN_COIN_POUCH =
+        new KeyMapping(
+            "vault_curios_enhancements.opencoinpouch",
+            KeyConflictContext.IN_GAME,
+            InputConstants.UNKNOWN,
+            VAULT_CURIOS_ENHANCEMENTS_CAT
+        );
+
     public static void register() {
         ClientRegistry.registerKeyBinding(Keybind.REBIND_COMPASS);
         ClientRegistry.registerKeyBinding(Keybind.OPEN_ANTIQUE_BOOK);
         ClientRegistry.registerKeyBinding(Keybind.OPEN_SHARD_POUCH);
+        ClientRegistry.registerKeyBinding(Keybind.OPEN_COIN_POUCH);
     }
 }

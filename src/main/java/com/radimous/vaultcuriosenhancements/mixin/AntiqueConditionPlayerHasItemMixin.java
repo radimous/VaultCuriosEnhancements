@@ -13,12 +13,9 @@ import top.theillusivec4.curios.api.CuriosApi;
 public class AntiqueConditionPlayerHasItemMixin {
     @Inject(method = "hasItem", at = @At(value = "HEAD"), cancellable = true)
     private void hasItem(final ServerPlayer player, ItemPredicate pred, CallbackInfoReturnable<Boolean> cir) {
-        var curios = CuriosApi.getCuriosHelper().findCurios(player);
-        for (var curio : curios) {
-            if (pred.test(curio.stack())){
-                cir.setReturnValue(true);
-                return;
-            }
+        var curios = CuriosApi.getCuriosHelper().findFirstCurio(player, pred::test);
+        if (curios.isPresent()){
+            cir.setReturnValue(true);
         }
     }
 }

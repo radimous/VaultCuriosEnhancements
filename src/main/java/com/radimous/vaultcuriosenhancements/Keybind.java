@@ -5,6 +5,7 @@ import com.radimous.vaultcuriosenhancements.network.C2SOpenAntiqueBookPacket;
 import com.radimous.vaultcuriosenhancements.network.C2SOpenCoinPouchPacket;
 import com.radimous.vaultcuriosenhancements.network.C2SOpenShardPouchPacket;
 import com.radimous.vaultcuriosenhancements.network.PacketHandler;
+import iskallia.vault.client.gui.screen.VaultCompassScreen;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
@@ -31,6 +32,9 @@ public final class Keybind {
         }
         if (OPEN_COIN_POUCH.consumeClick()) {
             PacketHandler.sendToServer(new C2SOpenCoinPouchPacket());
+        }
+        if (OPEN_COMPASS_SCREEN.consumeClick()) {
+            Minecraft.getInstance().setScreen(new VaultCompassScreen());
         }
     }
 
@@ -61,9 +65,18 @@ public final class Keybind {
             VAULT_CURIOS_ENHANCEMENTS_CAT
         );
 
+    public static final KeyMapping OPEN_COMPASS_SCREEN =
+        new KeyMapping(
+            "vault_curios_enhancements.opencompass",
+            KeyConflictContext.IN_GAME,
+            InputConstants.UNKNOWN,
+            VAULT_CURIOS_ENHANCEMENTS_CAT
+        );
+
     public static void register() {
         ClientRegistry.registerKeyBinding(Keybind.OPEN_ANTIQUE_BOOK);
         ClientRegistry.registerKeyBinding(Keybind.OPEN_SHARD_POUCH);
         ClientRegistry.registerKeyBinding(Keybind.OPEN_COIN_POUCH);
+        ClientRegistry.registerKeyBinding(Keybind.OPEN_COMPASS_SCREEN);
     }
 }

@@ -27,10 +27,6 @@ public class VaultCuriosEnhancements {
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
-            () -> new SlotTypeMessage.Builder("vault_compass")
-                .icon(new ResourceLocation(CuriosApi.MODID + ":slot/vault_compass"))
-                .priority(800).build());
-        InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
             () -> new SlotTypeMessage.Builder("shard_pouch")
                 .icon(new ResourceLocation(CuriosApi.MODID + ":slot/shard_pouch"))
                 .priority(800).build());

@@ -15,11 +15,6 @@ public class PacketHandler {
         .simpleChannel();
 
     public static void register() {
-        INSTANCE.messageBuilder(C2SSetCompassTargetPacket.class, 0, NetworkDirection.PLAY_TO_SERVER)
-            .encoder(C2SSetCompassTargetPacket::encode)
-            .decoder(C2SSetCompassTargetPacket::decode)
-            .consumer(C2SSetCompassTargetPacket::handle)
-            .add();
         INSTANCE.messageBuilder(C2SOpenAntiqueBookPacket.class, 1, NetworkDirection.PLAY_TO_SERVER)
             .encoder(C2SOpenAntiqueBookPacket::encode)
             .decoder(C2SOpenAntiqueBookPacket::decode)

@@ -4,7 +4,6 @@ import com.mojang.blaze3d.platform.InputConstants;
 import com.radimous.vaultcuriosenhancements.network.C2SOpenAntiqueBookPacket;
 import com.radimous.vaultcuriosenhancements.network.C2SOpenCoinPouchPacket;
 import com.radimous.vaultcuriosenhancements.network.C2SOpenShardPouchPacket;
-import com.radimous.vaultcuriosenhancements.network.C2SSetCompassTargetPacket;
 import com.radimous.vaultcuriosenhancements.network.PacketHandler;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -23,9 +22,7 @@ public final class Keybind {
         if (mc.player == null || event.phase == TickEvent.Phase.START) {
             return;
         }
-        if (REBIND_COMPASS.consumeClick()) {
-            PacketHandler.sendToServer(new C2SSetCompassTargetPacket());
-        }
+
         if (OPEN_ANTIQUE_BOOK.consumeClick()) {
             PacketHandler.sendToServer(new C2SOpenAntiqueBookPacket());
         }
@@ -39,13 +36,6 @@ public final class Keybind {
 
 
     public static final String VAULT_CURIOS_ENHANCEMENTS_CAT = "key.categories.vault_curios_enhancements";
-    public static final KeyMapping REBIND_COMPASS =
-        new KeyMapping(
-            "vault_curios_enhancements.rebindcompass",
-            KeyConflictContext.IN_GAME,
-            InputConstants.UNKNOWN,
-            VAULT_CURIOS_ENHANCEMENTS_CAT
-        );
 
     public static final KeyMapping OPEN_ANTIQUE_BOOK =
         new KeyMapping(
@@ -72,7 +62,6 @@ public final class Keybind {
         );
 
     public static void register() {
-        ClientRegistry.registerKeyBinding(Keybind.REBIND_COMPASS);
         ClientRegistry.registerKeyBinding(Keybind.OPEN_ANTIQUE_BOOK);
         ClientRegistry.registerKeyBinding(Keybind.OPEN_SHARD_POUCH);
         ClientRegistry.registerKeyBinding(Keybind.OPEN_COIN_POUCH);

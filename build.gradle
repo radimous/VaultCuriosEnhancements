@@ -178,7 +178,7 @@ dependencies {
     }
 
     implementation fg.deobf("curse.maven:create-328085:4550986")
-    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:6803123")
+    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:7110405")
     implementation fg.deobf("curse.maven:quark-243121:3840125")
 
     implementation fg.deobf("curse.maven:inventory-hud-forge-357540:4639686")
@@ -235,6 +235,19 @@ tasks.named('jar', Jar).configure {
     // This is the preferred method to reobfuscate your jar file
     finalizedBy 'reobfJar'
 }
+
+tasks.register("deleteSlimJar") {
+    dependsOn tasks.jar
+    doLast {
+        def slimJarFile = tasks.jar.archiveFile.get().asFile
+        if (slimJarFile.exists()) {
+            println "Deleting slim jar: ${slimJarFile}"
+            slimJarFile.delete()
+        }
+    }
+}
+
+tasks.jarJar.finalizedBy(tasks.deleteSlimJar)
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation

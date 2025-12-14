@@ -14,6 +14,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraftforge.network.NetworkEvent.Context;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
+import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.function.Supplier;
 
@@ -32,21 +33,18 @@ public class C2SOpenShardPouchPacket {
                 ServerPlayer sender = context.getSender();
                 if (sender != null) {
 
-                    int index = VaultCuriosEnhancements.getFirstItemIndex(sender, ModItems.SHARD_POUCH);
-                    if (index == -2) {
-                        sender.displayClientMessage(new TextComponent("You don't have a Shard Pouch in your inventory!"), true);
-                        return;
-                    }
-                    NetworkHooks.openGui(sender, new MenuProvider() {
-                        public @NotNull Component getDisplayName() {
-                            return new TextComponent("Shard Pouch");
-                        }
+                    CuriosApi.getCuriosHelper().findFirstCurio(sender, ModItems.SHARD_POUCH).ifPresent(shardPouchSlot -> {
+                            NetworkHooks.openGui(sender, new MenuProvider() {
+                                public @NotNull Component getDisplayName() {
+                                    return new TextComponent("Shard Pouch");
+                                }
 
-                        public AbstractContainerMenu createMenu(int windowId, Inventory inventory, Player player) {
-                            return new ShardPouchContainer(windowId, inventory, index);
+                                public AbstractContainerMenu createMenu(int windowId, Inventory inventory, Player player) {
+                                    return new ShardPouchContainer(windowId, inventory, -1);
+                                }
+                            }, buf -> buf.writeInt(-1));
                         }
-                    }, buf -> buf.writeInt(index));
-
+                    );
                 }
             }
         );

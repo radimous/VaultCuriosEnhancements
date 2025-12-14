@@ -1,14 +1,12 @@
 package com.radimous.vaultcuriosenhancements.network;
 
 import com.radimous.vaultcuriosenhancements.VaultCuriosEnhancements;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 
 public class PacketHandler {
-    private static final SimpleChannel INSTANCE = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(
-        VaultCuriosEnhancements.MODID, "main"))
+    private static final SimpleChannel INSTANCE = NetworkRegistry.ChannelBuilder.named(VaultCuriosEnhancements.id("main"))
         .serverAcceptedVersions(a -> true)
         .clientAcceptedVersions(a -> true)
         .networkProtocolVersion(() -> "1")

@@ -1,12 +1,11 @@
 package com.radimous.vaultcuriosenhancements.network;
 
-import com.radimous.vaultcuriosenhancements.VaultCuriosEnhancements;
 import iskallia.vault.init.ModItems;
 import iskallia.vault.item.CoinPouchItem;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent.Context;
+import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.function.Supplier;
 
@@ -24,13 +23,7 @@ public class C2SOpenCoinPouchPacket {
             () -> {
                 ServerPlayer sender = context.getSender();
                 if (sender != null) {
-
-                    int index = VaultCuriosEnhancements.getFirstItemIndex(sender, ModItems.COIN_POUCH);
-                    if (index == -2) {
-                        sender.displayClientMessage(new TextComponent("You don't have a Coin Pouch in your inventory!"), true);
-                        return;
-                    }
-                    CoinPouchItem.openGUI(sender, index);
+                    CuriosApi.getCuriosHelper().findFirstCurio(sender, ModItems.COIN_POUCH).ifPresent(antiqueSlot ->  CoinPouchItem.openGUI(sender, -1));
                 }
             }
         );

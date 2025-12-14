@@ -7,14 +7,18 @@
   "mixins": [
     "AntiqueConditionPlayerHasItemMixin",
     "CoinPouchItemAccessor",
-    "ItemAccessor",
     "ItemShardPouchMixin",
     "MixinAntiqueBookContainer",
     "MixinCoinPouchContainer",
     "MixinCoinPouchItem",
+    "MixinInventoryHudRenderer",
+    "MixinModOptions",
     "MixinShardPouchContainer"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "client": [
+    "MixinInputEvents"
+  ]
 }

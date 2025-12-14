@@ -18,7 +18,7 @@ import static iskallia.vault.item.ItemShardPouch.setContainedStack;
 @Debug(export = true)
 @Mixin(value = ItemShardPouch.class, remap = false)
 public class ItemShardPouchMixin {
-    @ModifyVariable(method = "getShardCount(Lnet/minecraft/world/entity/player/Inventory;)I", at = @At(value = "STORE", ordinal = 0), ordinal = 0)
+    @ModifyVariable(method = "getShardCount(Lnet/minecraft/world/entity/player/Inventory;)I", at = @At(value = "STORE", ordinal = 0), name = "shards")
     private static int getShardCount(int original, Inventory inventory){
         ItemStack stack = ItemStack.EMPTY;
         Optional<SlotResult> slot = CuriosApi.getCuriosHelper().findFirstCurio(inventory.player, ModItems.SHARD_POUCH);

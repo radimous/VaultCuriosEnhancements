@@ -2,10 +2,6 @@
   "curios.identifier.shard_pouch": "Shard Pouch",
   "curios.identifier.coin_pouch": "Coin Pouch",
   "curios.identifier.antique_collector_book": "Antique Stamp Collector Book",
-  "vault_curios_enhancements.rebindcompass": "Rebind Compass",
-  "vault_curios_enhancements.openantiquebook": "Open Antique Stamp Collector Book",
-  "vault_curios_enhancements.openshardpouch": "Open Shard Pouch",
-  "vault_curios_enhancements.opencoinpouch": "Open Coin Pouch",
   "vault_curios_enhancements.opencompass": "Open Compass Target Selection",
   "key.categories.vault_curios_enhancements": "Vault Curios Enhancements"
 }

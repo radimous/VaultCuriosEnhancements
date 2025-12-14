@@ -27,24 +27,8 @@ public class C2SOpenAntiqueBookPacket {
             () -> {
                 ServerPlayer sender = context.getSender();
                 if (sender != null) {
-
-
-                    int index = VaultCuriosEnhancements.getFirstItemIndex(sender, ModItems.ANTIQUE_COLLECTOR_BOOK);
-                    if (index == -2) {
-                        sender.displayClientMessage(new TextComponent("You don't have a Antique Collector Book in your inventory!"), true);
-                        return;
-                    }
-
-                    SlotResult antiqueSlot = CuriosApi.getCuriosHelper().findFirstCurio(sender, ModItems.ANTIQUE_COLLECTOR_BOOK).orElse(null);
-                    if (antiqueSlot != null) {
-                        AntiqueStampCollectorBook.openBook(sender, -1, antiqueSlot.stack());
-                        return;
-                    }
-
-                    if (index != -1) {
-                        ItemStack stack = sender.getInventory().items.get(index);
-                        AntiqueStampCollectorBook.openBook(sender, index, stack);
-                    }
+                    CuriosApi.getCuriosHelper().findFirstCurio(sender, ModItems.ANTIQUE_COLLECTOR_BOOK)
+                        .ifPresent(antiqueSlot -> AntiqueStampCollectorBook.openBook(sender, -1, antiqueSlot.stack()));
                 }
             }
         );

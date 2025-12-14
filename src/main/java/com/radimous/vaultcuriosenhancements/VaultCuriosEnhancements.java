@@ -1,5 +1,6 @@
 package com.radimous.vaultcuriosenhancements;
 
+import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.slf4j.Logger;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.SlotTypeMessage;
@@ -18,25 +20,26 @@ import top.theillusivec4.curios.api.SlotTypeMessage;
 @Mod(VaultCuriosEnhancements.MODID)
 public class VaultCuriosEnhancements {
     public static final String MODID = "vault_curios_enhancements";
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public VaultCuriosEnhancements() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         MinecraftForge.EVENT_BUS.register(new CommonEvent());
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_SPEC);
+//        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_SPEC);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
             () -> new SlotTypeMessage.Builder("shard_pouch")
-                .icon(new ResourceLocation(CuriosApi.MODID + ":slot/shard_pouch"))
+                .icon(ResourceLocation.parse(CuriosApi.MODID + ":slot/shard_pouch"))
                 .priority(800).build());
         InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
             () -> new SlotTypeMessage.Builder("coin_pouch")
-                .icon(new ResourceLocation(CuriosApi.MODID + ":slot/coin_pouch"))
+                .icon(ResourceLocation.parse(CuriosApi.MODID + ":slot/coin_pouch"))
                 .priority(800).build());
         InterModComms.sendTo(CuriosApi.MODID, SlotTypeMessage.REGISTER_TYPE,
             () -> new SlotTypeMessage.Builder("antique_collector_book")
-                .icon(new ResourceLocation(CuriosApi.MODID + ":slot/antique_collector_book"))
+                .icon(ResourceLocation.parse(CuriosApi.MODID + ":slot/antique_collector_book"))
                 .priority(800).build());
     }
 
@@ -58,24 +61,8 @@ public class VaultCuriosEnhancements {
         }
     }
 
-    /**
-     * Get the first index of the item in the player's inventory. -1 if in curio, -2 if not found
-     * @param player player
-     * @param item item to find
-     * @return index of the item in the player's inventory, -1 if in curio, -2 if not found
-     */
-    public static int getFirstItemIndex(ServerPlayer player, Item item) {
-        SlotResult shardPouchSlot = CuriosApi.getCuriosHelper().findFirstCurio(player,item).orElse(null);
-        if (shardPouchSlot != null) {
-            return -1;
-        }
-
-        for (int i = 0; i < player.getInventory().items.size(); ++i) {
-            ItemStack stack = player.getInventory().items.get(i);
-            if (!stack.isEmpty() && stack.is(item)) {
-                return i;
-            }
-        }
-        return -2;
+    public static ResourceLocation id(String name) {
+        return ResourceLocation.fromNamespaceAndPath(MODID, name);
     }
+
 }

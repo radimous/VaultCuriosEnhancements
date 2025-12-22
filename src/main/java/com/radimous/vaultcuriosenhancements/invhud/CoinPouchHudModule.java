@@ -46,8 +46,11 @@ public class CoinPouchHudModule extends AbstractHudModule<ModuleRenderContext> {
     }
 
     private static boolean hasCurioSlot(Player player) {
-        if (player == null) return false;
-        return CuriosApi.getCuriosHelper().getCuriosHandler(player).map(handler -> handler.getCurios().get("coin_pouch").getSlots() > 0).orElse(false);
+        if (player == null) {return false;}
+        return CuriosApi.getCuriosHelper().getCuriosHandler(player).map(handler -> {
+            var pouchCurios = handler.getCurios().get("coin_pouch");
+            return pouchCurios != null && pouchCurios.getSlots() > 0;
+        }).orElse(false);
     }
 
     @Override

@@ -48,7 +48,10 @@ public class ShardPouchHudModule extends AbstractHudModule<ModuleRenderContext> 
 
     private static boolean hasCurioSlot(Player player) {
         if (player == null) return false;
-        return CuriosApi.getCuriosHelper().getCuriosHandler(player).map(handler -> handler.getCurios().get("shard_pouch").getSlots() > 0).orElse(false);
+        return CuriosApi.getCuriosHelper().getCuriosHandler(player).map(handler -> {
+            var pouchCurios = handler.getCurios().get("shard_pouch");
+            return pouchCurios != null && pouchCurios.getSlots() > 0;
+        }).orElse(false);
     }
 
     @Override
